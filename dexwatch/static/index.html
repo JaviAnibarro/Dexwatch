@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dexwatch · new pools terminal</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="aurora a1"></div>
+<div class="aurora a2"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">◈</div>
+    <div class="brand-text">
+      <strong>dexwatch</strong>
+      <small>new pools terminal</small>
+    </div>
+  </div>
+  <nav class="chains" id="chains" aria-label="chain"></nav>
+  <div class="grow"></div>
+  <label class="search" id="searchBox">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" placeholder="Cari token, simbol, CA…" autocomplete="off" spellcheck="false">
+    <kbd>/</kbd>
+  </label>
+  <div class="live" id="live"><span class="dot"></span><span id="liveText">live</span></div>
+  <button class="ghost" id="autoBtn" title="Auto-refresh tiap 5 detik">auto</button>
+  <button class="ghost icon" id="reloadBtn" title="Muat ulang">⟳</button>
+</header>
+
+<main class="wrap">
+  <section class="stats" id="stats">
+    <div class="stat">
+      <span>Pool terpantau</span>
+      <strong id="stTotal">–</strong>
+      <em id="stNew">–</em>
+    </div>
+    <div class="stat">
+      <span>Total likuiditas</span>
+      <strong id="stLiq">–</strong>
+      <em>USD · 2 sisi</em>
+    </div>
+    <div class="stat">
+      <span>Rata-rata umur</span>
+      <strong id="stAge">–</strong>
+      <em id="stChain">–</em>
+    </div>
+    <div class="stat">
+      <span>Median 24 jam</span>
+      <strong id="stChange">–</strong>
+      <em>perubahan harga</em>
+    </div>
+  </section>
+
+  <section class="controls">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-sort="new">Baru</button>
+      <button class="tab" data-sort="volume">Trending</button>
+      <button class="tab" data-sort="liq">Likuiditas</button>
+      <button class="tab" data-sort="rise">Naik</button>
+      <button class="tab" data-sort="fall">Turun</button>
+    </div>
+    <div class="filters">
+      <select id="minLiq" title="Likuiditas minimum">
+        <option value="0">semua likuiditas</option>
+        <option value="1000">≥ $1K</option>
+        <option value="5000">≥ $5K</option>
+        <option value="20000">≥ $20K</option>
+        <option value="100000">≥ $100K</option>
+      </select>
+      <label class="check"><input type="checkbox" id="hideHp"> anti-honeypot</label>
+      <label class="check"><input type="checkbox" id="onlyVerified"> verified</label>
+      <div class="view" id="view">
+        <button data-view="grid" class="active" title="Card grid">▦</button>
+        <button data-view="list" title="Daftar">☰</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="grid" class="grid"></section>
+  <section id="list" class="list hidden"></section>
+
+  <div id="empty" class="empty hidden">
+    <div class="empty-icon">◎</div>
+    <p>Belum ada pool yang cocok.</p>
+    <small>Jalankan <code>./dexwatch.sh serve --scan</code> supaya data terus masuk, atau longgarkan filter.</small>
+  </div>
+
+  <footer class="foot">
+    <span>Data on-chain + DexScreener · GeckoTerminal untuk grafik.</span>
+    <span>Bukan nasihat keuangan. Selalu periksa sendiri sebelum membeli.</span>
+  </footer>
+</main>
+
+<aside id="drawer" class="drawer" aria-hidden="true">
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Detail token">
+    <button id="closeDrawer" class="close" title="Tutup (Esc)">×</button>
+    <div id="drawerBody"></div>
+  </div>
+</aside>
+
+<div id="toast" class="toast"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
