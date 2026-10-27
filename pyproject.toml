@@ -1,0 +1,22 @@
+[project]
+name = "dexwatch"
+version = "1.1.0"
+description = "Pemantau koin/pool baru di DEX, detail on-chain + DexScreener/GoPlus"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+dexwatch = "dexwatch.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["dexwatch*"]
+
+[tool.setuptools.package-data]
+dexwatch = ["static/*"]
