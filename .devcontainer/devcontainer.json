@@ -1,0 +1,9 @@
+{
+  "name": "dexwatch",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "forwardPorts": [8787],
+  "portsAttributes": {
+    "8787": { "label": "dexwatch UI", "onAutoForward": "notify" }
+  },
+  "postCreateCommand": "python3 -m compileall -q dexwatch"
+}
